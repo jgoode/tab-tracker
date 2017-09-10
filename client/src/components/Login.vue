@@ -3,7 +3,7 @@
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
         <v-toolbar flat dense class="blue darken-4">
-          <v-toolbar-title><span style="color:white;">Register</span></v-toolbar-title>
+          <v-toolbar-title><span style="color:white;">Login</span></v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
@@ -22,7 +22,7 @@
           <br>
           <div class="error" v-html="error"></div>
           <br>
-          <v-btn dark class="blue darken-3" @click="register">Register</v-btn>
+          <v-btn dark class="blue darken-3" @click="login">Login</v-btn>
         </div>
       </div>
     </v-flex>
@@ -41,9 +41,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
