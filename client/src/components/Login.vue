@@ -15,6 +15,7 @@
           <br>
           <v-text-field
                 name="password"
+                type="password"
                 label="Password"
                 id="password"
                 v-model="password"
@@ -43,10 +44,13 @@ export default {
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        const token = response.data.token
+        this.$store.dispatch('setToken', token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -58,7 +62,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .error {
-    color: red;
+    color: white;
+    font-weight: bold;
+    
   }
 
 </style>
